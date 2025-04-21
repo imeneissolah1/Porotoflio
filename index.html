@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Issolah Imene - Engineering & PhD Portfolio</title> 
+    <title>Issolah Imene - Engineering & PhD Portfolio</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Custom CSS (Same styles as before) -->
+    <!-- Custom CSS (Includes Mobile Adjustments for Navbar) -->
     <style>
         :root {
             --primary-color: #0a84ff; /* Vibrant blue */
@@ -37,6 +37,7 @@
             position: relative; /* Required for scrollspy */
             background-color: #ffffff; /* White background for contrast */
             overflow-x: hidden; /* Prevent horizontal scroll */
+            padding-top: 80px; /* <<< ADD THIS LINE - Adjust value if navbar height differs */
         }
 
         h1, h2, h3, h4, h5, h6, .navbar-brand {
@@ -53,17 +54,22 @@
             background-color: rgba(28, 28, 30, 0.95); /* var(--dark-bg) with transparency */
             backdrop-filter: blur(10px);
             transition: background-color 0.3s ease;
+            padding-top: 0.75rem; /* Added some vertical padding */
+            padding-bottom: 0.75rem;
         }
         .navbar-brand {
             color: var(--primary-color) !important;
             font-weight: 700;
-            font-size: 1.5rem;
+            font-size: 1.5rem; /* Default size */
+             transition: font-size 0.3s ease; /* Smooth transition for resizing */
         }
         .nav-link {
             color: var(--text-light) !important;
-            margin: 0 10px;
+            margin: 0 10px; /* Horizontal margin for desktop */
+            padding: 8px 0; /* Vertical padding for touch targets */
             position: relative;
             transition: color 0.3s ease;
+            text-align: left; /* Default alignment */
         }
         .nav-link::after {
             content: '';
@@ -84,9 +90,21 @@
         }
         .navbar-toggler {
             border-color: rgba(242, 242, 247, 0.1);
+             padding: 0.25rem 0.5rem; /* Slightly smaller toggler padding */
         }
         .navbar-toggler-icon {
              background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28242, 242, 247, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+             width: 1.2em; /* Adjust icon size */
+             height: 1.2em;
+        }
+        /* Style the collapsed menu area */
+        .navbar-collapse {
+            /* Optional: Add styles for when the menu is open on mobile */
+             background-color: rgba(28, 28, 30, 0.98); /* Slightly more opaque background for clarity */
+             margin-top: 10px; /* Space between toggle button and menu items */
+             padding-bottom: 10px; /* Padding at the bottom */
+             border-radius: 8px; /* Optional rounded corners */
+             /* Remove the background and margin/padding if the default Bootstrap style is preferred */
         }
 
         /* --- Hero Section --- */
@@ -101,6 +119,7 @@
             justify-content: center;
             text-align: center;
             position: relative; /* For potential effects */
+            /*padding-top: 80px; /* Add padding to prevent overlap with fixed navbar */
         }
         #hero .hero-content {
              max-width: 800px;
@@ -408,6 +427,8 @@
         }
 
         /* --- Responsive Adjustments --- */
+
+        /* Styles for tablets and below (<= 991px) - Navbar collapses here */
         @media (max-width: 991px) {
             .section-padding { padding: 80px 0; }
             #hero h1 { font-size: 2.8rem; }
@@ -416,7 +437,32 @@
             .timeline-item { padding-left: 45px; }
             .timeline-item::before { left: 20px; }
             .timeline-content::after { border-width: 8px; }
+
+            /* Navbar specific adjustments for collapsed view */
+            .navbar-nav {
+                 margin-top: 10px; /* Add space above links when collapsed */
+            }
+            .nav-link {
+                margin-left: 0; /* Remove horizontal margin */
+                margin-right: 0;
+                padding-left: 15px; /* Add padding for indentation */
+                padding-right: 15px;
+                text-align: center; /* Center nav links */
+            }
+             .nav-link::after {
+                 /* Optionally hide or adjust the underline for mobile */
+                 display: none; /* Example: hide underline */
+            }
+             .navbar-collapse {
+                 /* Remove the styles added earlier if you DON'T want the custom background/padding */
+                 /* background-color: transparent; */
+                 /* margin-top: 0; */
+                 /* padding-bottom: 0; */
+                 /* border-radius: 0; */
+            }
         }
+
+        /* Styles for mobile phones (<= 767px) */
         @media (max-width: 767px) {
             .section-padding { padding: 60px 0; }
             #hero { min-height: 80vh; }
@@ -428,6 +474,27 @@
             .timeline-item::before { left: 15px; }
             .timeline-content::after { display: none; } /* Hide arrow on mobile */
             .contact-info-item { font-size: 1rem; }
+
+            /* Further Navbar Adjustments for Small Mobile */
+            .navbar-brand {
+                font-size: 1.3rem; /* Make brand slightly smaller */
+            }
+            .navbar {
+                 padding-top: 0.5rem; /* Reduce padding slightly more */
+                 padding-bottom: 0.5rem;
+            }
+             .nav-link {
+                 font-size: 0.95rem; /* Adjust link font size if needed */
+             }
+        }
+        @media (max-width: 767px) {
+            /* ... other styles ... */
+
+            /* Navbar Adjustments for Small Mobile */
+            .navbar-brand {
+                font-size: 1.2rem; /* Example: Slightly smaller if 1.3rem is too big */
+            }
+            /* ... other styles ... */
         }
 
     </style>
@@ -436,12 +503,16 @@
 <body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="80">
 
     <!-- Navigation -->
+    <!-- The HTML structure uses Bootstrap classes correctly for responsiveness -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
+            <!-- Brand link -->
             <a class="navbar-brand" href="#page-top">Imene ISSOLAH</a>
+            <!-- Toggler/collapsible Button -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <!-- Navbar links -->
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
@@ -460,9 +531,8 @@
     <!-- Hero Section -->
     <header class="hero d-flex align-items-center" id="page-top">
         <div class="container text-center">
-             <!-- Optional: Add profile picture here -->
-             <img src="https://via.placeholder.com/180/0a84ff/FFFFFF?text=II" alt="Issolah Imene" class="hero-profile-img mb-4"> {/* Replace with your actual photo URL */}
-             <div class="hero-content">
+            <!-- <img src="https://via.placeholder.com/180/0a84ff/FFFFFF?text=II" alt="Issolah Imene" class="hero-profile-img mb-4">-->
+                          <div class="hero-content">
                 <h1 class="display-4">Issolah Imene</h1>
                 <p class="lead">PhD Candidate - Digital Twins | Software & Data Engineer | AI & Web Development Enthusiast</p>
                 <a href="#about" class="btn btn-primary-custom mt-3">Learn More <i class="fas fa-arrow-down ms-2"></i></a>
@@ -499,7 +569,7 @@
                  <div class="col-lg-10 mx-auto">
                     <div class="card-custom mb-4">
                         <p><i class="fas fa-university me-2 text-primary"></i><strong>Institution:</strong> IRISA (Research Institute of Computer Science and Random Systems), Rennes</p>
-                        <p><i class="fas fa-calendar-alt me-2 text-primary"></i><strong>Start Date:</strong> May 1st, 2025</p> 
+                        <p><i class="fas fa-calendar-alt me-2 text-primary"></i><strong>Start Date:</strong> May 1st, 2025</p>
                         <p><i class="fas fa-project-diagram me-2 text-primary"></i><strong>Context:</strong> Part of the IRIS-E ANIME-WATER multidisciplinary project (Computer Science, Hydrogeophysics, Hydrology, Sociology).</p>
                         <hr>
                         <p><strong>Description:</strong> Addressing the critical challenge of water resource management exacerbated by climate change and population growth, this research *will* focus on designing and developing an advanced <strong>Digital Twin of a water production system</strong>. The goal is to create an innovative tool capable of integrating diverse simulation models, facilitating co-construction of prospective scenarios with stakeholders, and providing clear visualizations to support informed decision-making.</p>
@@ -538,7 +608,7 @@
                                 </ul>
                             </div>
                         </li>
-                         <!-- Add more experience items here using the same li.timeline-item format -->
+                         <!-- Add more experience items here -->
                     </ul>
                 </div>
             </div>
@@ -608,7 +678,7 @@
                         </div>
                     </div>
                 </div>
-                 <!-- Add more project cards here if needed -->
+                 <!-- Add more project cards here -->
             </div>
         </div>
     </section>
@@ -621,59 +691,16 @@
             </div>
              <div class="row">
                 <div class="col-lg-11 mx-auto skills-list">
-
-                    <div class="skills-category">
-                        <h4><i class="fas fa-cubes"></i> Digital Twin Engineering</h4>
-                        <span class="badge badge-dev">Conceptualization</span> <span class="badge badge-dev">Modeling</span> <span class="badge badge-dev">Simulation Integration</span> <span class="badge badge-dev">Platform Development</span>
-                    </div>
-
-                    <div class="skills-category">
-                        <h4><i class="fas fa-brain"></i> AI, ML & Data Science</h4>
-                        <span class="badge badge-data">TensorFlow</span> <span class="badge badge-data">Keras</span> <span class="badge badge-data">PyTorch</span> <span class="badge badge-data">Scikit-learn</span> <span class="badge badge-data">Pandas</span> <span class="badge badge-data">NumPy</span> <span class="badge badge-data">YOLO</span> <span class="badge badge-data">ImageAI</span> <span class="badge badge-data">Matplotlib/Seaborn</span> <span class="badge badge-data">Data Analysis</span>
-                        <span class="badge badge-data">Power BI</span> 
-                    </div>
-
-                     <div class="skills-category">
-                        <h4><i class="fas fa-cogs"></i> ETL & Data Management</h4>
-                        <span class="badge badge-data">SAP Data Services</span> 
-                        <span class="badge badge-data">SQL Server</span> <span class="badge badge-data">MySQL</span> <span class="badge badge-data">Oracle</span> <span class="badge badge-data">Database Design</span> <span class="badge badge-data">Database Security</span>
-                    </div>
-
-                    <div class="skills-category">
-                        <h4><i class="fas fa-code"></i> Software & Web Development</h4>
-                        <span class="badge badge-dev">Python</span> <span class="badge badge-dev">Java</span> <span class="badge badge-dev">JavaEE</span> <span class="badge badge-dev">Spring Boot</span> <span class="badge badge-dev">React</span> <span class="badge badge-dev">JavaScript</span> <span class="badge badge-dev">HTML/CSS</span> <span class="badge badge-dev">PHP</span> <span class="badge badge-dev">C</span> <span class="badge badge-dev">JavaFX</span> <span class="badge badge-dev">BluePrint (UE)</span>
-                    </div>
-
-                    <div class="skills-category">
-                        <h4><i class="fas fa-shield-virus"></i> Cybersecurity</h4>
-                        <span class="badge badge-security">Cryptography</span> <span class="badge badge-security">Digital Signatures</span> <span class="badge badge-security">Authentication</span> <span class="badge badge-security">IDS/IPS</span> <span class="badge badge-security">Metasploit</span> <span class="badge badge-security">Wireshark</span> <span class="badge badge-security">Nmap</span> <span class="badge badge-security">Burp Suite</span> <span class="badge badge-security">Firewalls</span> <span class="badge badge-security">Data Encryption</span>
-                    </div>
-
-                     <div class="skills-category">
-                        <h4><i class="fas fa-cloud"></i> Cloud & Distributed Systems</h4>
-                        <span class="badge badge-cloud">Cloud Concepts</span> <span class="badge badge-cloud">Distributed Apps</span> <span class="badge badge-cloud">Docker (basics)</span>
-                    </div>
-
-                    <div class="skills-category">
-                         <h4><i class="fas fa-network-wired"></i> Networking</h4>
-                         <span class="badge">TCP/IP</span> <span class="badge">LAN/WAN</span> <span class="badge">VPN</span> <span class="badge">Switch/Router Config</span>
-                    </div>
-
-                    <div class="skills-category">
-                         <h4><i class="fas fa-tools"></i> OS & Tools</h4>
-                         <span class="badge">Windows</span> <span class="badge">Linux</span> <span class="badge">Git</span> <span class="badge">Unreal Engine</span> <span class="badge">Android Studio</span> <span class="badge">PyCharm</span> <span class="badge">Eclipse</span> <span class="badge">VS Code</span> <span class="badge">Google Colab</span>
-                    </div>
-
-                     <div class="skills-category">
-                         <h4><i class="fas fa-tasks"></i> Methodologies & Research</h4>
-                         <span class="badge badge-methodo">Scrum</span> 
-                         <span class="badge badge-methodo">Project Management</span> <span class="badge badge-methodo">Planning</span> <span class="badge badge-methodo">Technical Writing</span> <span class="badge badge-methodo">Literature Review</span> <span class="badge badge-methodo">Experimental Design</span>
-                    </div>
-
-                     <div class="skills-category">
-                         <h4><i class="fas fa-users"></i> Soft Skills</h4>
-                         <span class="badge">Teamwork</span> <span class="badge">Leadership</span> <span class="badge">Time Management</span> <span class="badge">Communication</span> <span class="badge">Problem Solving</span> <span class="badge">Adaptability</span> <span class="badge">Autonomy</span>
-                    </div>
+                    <div class="skills-category"><h4><i class="fas fa-cubes"></i> Digital Twin Engineering</h4> <span class="badge badge-dev">Conceptualization</span> <span class="badge badge-dev">Modeling</span> <span class="badge badge-dev">Simulation Integration</span> <span class="badge badge-dev">Platform Development</span></div>
+                    <div class="skills-category"><h4><i class="fas fa-brain"></i> AI, ML & Data Science</h4> <span class="badge badge-data">TensorFlow</span> <span class="badge badge-data">Keras</span> <span class="badge badge-data">PyTorch</span> <span class="badge badge-data">Scikit-learn</span> <span class="badge badge-data">Pandas</span> <span class="badge badge-data">NumPy</span> <span class="badge badge-data">YOLO</span> <span class="badge badge-data">ImageAI</span> <span class="badge badge-data">Matplotlib/Seaborn</span> <span class="badge badge-data">Data Analysis</span> <span class="badge badge-data">Power BI</span></div>
+                    <div class="skills-category"><h4><i class="fas fa-cogs"></i> ETL & Data Management</h4> <span class="badge badge-data">SAP Data Services</span> <span class="badge badge-data">SQL Server</span> <span class="badge badge-data">MySQL</span> <span class="badge badge-data">Oracle</span> <span class="badge badge-data">Database Design</span> <span class="badge badge-data">Database Security</span></div>
+                    <div class="skills-category"><h4><i class="fas fa-code"></i> Software & Web Development</h4> <span class="badge badge-dev">Python</span> <span class="badge badge-dev">Java</span> <span class="badge badge-dev">JavaEE</span> <span class="badge badge-dev">Spring Boot</span> <span class="badge badge-dev">React</span> <span class="badge badge-dev">JavaScript</span> <span class="badge badge-dev">HTML/CSS</span> <span class="badge badge-dev">PHP</span> <span class="badge badge-dev">C</span> <span class="badge badge-dev">JavaFX</span> <span class="badge badge-dev">BluePrint (UE)</span></div>
+                    <div class="skills-category"><h4><i class="fas fa-shield-virus"></i> Cybersecurity</h4> <span class="badge badge-security">Cryptography</span> <span class="badge badge-security">Digital Signatures</span> <span class="badge badge-security">Authentication</span> <span class="badge badge-security">IDS/IPS</span> <span class="badge badge-security">Metasploit</span> <span class="badge badge-security">Wireshark</span> <span class="badge badge-security">Nmap</span> <span class="badge badge-security">Burp Suite</span> <span class="badge badge-security">Firewalls</span> <span class="badge badge-security">Data Encryption</span></div>
+                    <div class="skills-category"><h4><i class="fas fa-cloud"></i> Cloud & Distributed Systems</h4> <span class="badge badge-cloud">Cloud Concepts</span> <span class="badge badge-cloud">Distributed Apps</span> <span class="badge badge-cloud">Docker (basics)</span></div>
+                    <div class="skills-category"><h4><i class="fas fa-network-wired"></i> Networking</h4> <span class="badge">TCP/IP</span> <span class="badge">LAN/WAN</span> <span class="badge">VPN</span> <span class="badge">Switch/Router Config</span></div>
+                    <div class="skills-category"><h4><i class="fas fa-tools"></i> OS & Tools</h4> <span class="badge">Windows</span> <span class="badge">Linux</span> <span class="badge">Git</span> <span class="badge">Unreal Engine</span> <span class="badge">Android Studio</span> <span class="badge">PyCharm</span> <span class="badge">Eclipse</span> <span class="badge">VS Code</span> <span class="badge">Google Colab</span></div>
+                    <div class="skills-category"><h4><i class="fas fa-tasks"></i> Methodologies & Research</h4> <span class="badge badge-methodo">Scrum</span> <span class="badge badge-methodo">Project Management</span> <span class="badge badge-methodo">Planning</span> <span class="badge badge-methodo">Technical Writing</span> <span class="badge badge-methodo">Literature Review</span> <span class="badge badge-methodo">Experimental Design</span></div>
+                    <div class="skills-category"><h4><i class="fas fa-users"></i> Soft Skills</h4> <span class="badge">Teamwork</span> <span class="badge">Leadership</span> <span class="badge">Time Management</span> <span class="badge">Communication</span> <span class="badge">Problem Solving</span> <span class="badge">Adaptability</span> <span class="badge">Autonomy</span></div>
                 </div>
             </div>
         </div>
@@ -691,7 +718,7 @@
                         <li class="timeline-item">
                             <div class="timeline-content">
                                 <h4>PhD in Computer Science (Digital Twins)</h4>
-                                <span class="meta"><i class="fas fa-university"></i> IRISA | <i class="fas fa-map-marker-alt"></i> Rennes, France | <i class="fas fa-calendar-alt"></i> May 2025 – (Expected ~2028)</span> {/* UPDATED DATES */}
+                                <span class="meta"><i class="fas fa-university"></i> IRISA | <i class="fas fa-map-marker-alt"></i> Rennes, France | <i class="fas fa-calendar-alt"></i> May 2025 – (Expected ~2028)</span>
                                 <p>Specialization in digital twin engineering for water resource management.</p>
                             </div>
                         </li>
@@ -753,23 +780,10 @@
             <p class="lead mb-5 text-light">Feel free to reach out for collaborations or opportunities!</p>
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-6">
-                    <div class="contact-info-item">
-                         <i class="fas fa-envelope contact-icon"></i>
-                         <span><a href="mailto:imeneissolah@gmail.com">imeneissolah@gmail.com</a></span>
-                    </div>
-                     <div class="contact-info-item">
-                         <i class="fas fa-phone contact-icon"></i>
-                         <span>+33 6 46 65 94 52</span>
-                     </div>
-                     <div class="contact-info-item">
-                          <i class="fab fa-linkedin contact-icon"></i>
-                         <span><a href="https://www.linkedin.com/in/imene-issolah-757726202/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a></span>
-                     </div>
-                      <!-- Optional: Add GitHub -->
-                      <div class="contact-info-item">
-                          <i class="fab fa-github contact-icon"></i>
-                          <span><a href="#" target="_blank" rel="noopener noreferrer">GitHub Profile</a></span>
-                      </div>
+                    <div class="contact-info-item"> <i class="fas fa-envelope contact-icon"></i> <span><a href="mailto:imeneissolah@gmail.com">imeneissolah@gmail.com</a></span> </div>
+                    <div class="contact-info-item"> <i class="fas fa-phone contact-icon"></i> <span>+33 6 46 65 94 52</span> </div>
+                    <div class="contact-info-item"> <i class="fab fa-linkedin contact-icon"></i> <span><a href="https://www.linkedin.com/in/imene-issolah-757726202/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a></span> </div>
+                    <div class="contact-info-item"> <i class="fab fa-github contact-icon"></i> <span><a href="#" target="_blank" rel="noopener noreferrer">GitHub Profile</a></span> </div>
                 </div>
             </div>
         </div>
@@ -786,7 +800,7 @@
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-    <!-- Custom JS (Same script as before) -->
+    <!-- Custom JS (No changes needed here for header responsiveness) -->
     <script>
         // Smooth scrolling
         document.querySelectorAll('a.nav-link[href^="#"]').forEach(anchor => {
@@ -808,7 +822,14 @@
                     const navbarToggler = document.querySelector('.navbar-toggler');
                     const navbarCollapse = document.querySelector('#navbarResponsive');
                     if (navbarToggler && navbarCollapse.classList.contains('show')) {
-                        navbarToggler.click();
+                        // Use Bootstrap's Collapse instance to hide
+                        const collapseInstance = bootstrap.Collapse.getInstance(navbarCollapse);
+                        if (collapseInstance) {
+                            collapseInstance.hide();
+                        } else {
+                             // Fallback if instance not found (though it should be)
+                             navbarCollapse.classList.remove('show');
+                        }
                     }
                 }
             });
